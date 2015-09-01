@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:cache="http://www.springframework.org/schema/cache"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+		http://www.springframework.org/schema/aop
+		http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context-3.2.xsd
+		http://www.springframework.org/schema/cache
+		http://www.springframework.org/schema/cache/spring-cache-3.1.xsd">
+	<context:property-placeholder location="classpath:profiles/${profile.env}/jdbc.properties"/>
+	<bean id="dataSourceTest" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+    	<property name="driverClass" value="${jdbc.irc.driverClassName}"/>
+        <property name="jdbcUrl" value="${jdbc.irc.url}"/>
+        <property name="username" value="${jdbc.irc.username}"/>
+        <property name="password" value="${jdbc.irc.password}"/>
+        <property name="idleConnectionTestPeriodInMinutes" value="60"/>
+        <property name="idleMaxAgeInMinutes" value="240"/>
+        <property name="maxConnectionsPerPartition" value="${jdbc.irc.max.connections.per.partition}"/>
+        <property name="minConnectionsPerPartition" value="${jdbc.irc.min.connections.per.partition}"/>
+        <property name="partitionCount" value="${jdbc.irc.partition.count}"/>
+        <property name="acquireIncrement" value="5"/>
+        <property name="statementsCacheSize" value="100"/>
+        <property name="connectionTestStatement" value="select 1"/>
+    </bean>
+		
+		
+		
+		
+</beans>
